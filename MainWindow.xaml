@@ -1,0 +1,79 @@
+﻿<Window x:Class="WPFHobbyCodeAlong.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFHobbyCodeAlong" xmlns:viewmodels="clr-namespace:WPFHobbyCodeAlong.ViewModels"       
+        xmlns:ViewModels="clr-namespace:WPFHobbyCodeAlong.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:HobbiesViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="456" Width="806" BorderBrush="#FF5141C5" Foreground="#FF2288E6" MinWidth="806" MinHeight="456">
+    <Window.DataContext>
+        <ViewModels:HobbiesViewModel />
+    </Window.DataContext>
+    <Window.Background>
+        <RadialGradientBrush>
+            <GradientStop Color="Black"/>
+            <GradientStop Color="#FF2F7CE2" Offset="1"/>
+        </RadialGradientBrush>
+    </Window.Background>
+
+
+    <Grid Margin="10,10,10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="325*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="134*"/>
+            <ColumnDefinition Width="157*"/>
+            <ColumnDefinition Width="495*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+
+            <StackPanel Orientation="Horizontal" Height="44" Width="134">
+                <Button Content="Add Hobbie" Margin="6,5,14,5"  Command="{Binding AddCommand}" Width="121"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="44" Width="157">
+                <Button Content="Remove Hobbie" Margin="4,5,11,5" Command="{Binding RemoveCommand}" Width="147"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,44,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <Label Margin="10,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" FontFamily="Arial" FontSize="16" Height="32" Content="Hobbies"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="0,44,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <ListView 
+                ItemsSource="{Binding Hobbies}" 
+                SelectedItem="{Binding SelectedHobbie}" Height="309">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Margin="0 5 5 5"/>
+                            <CheckBox IsChecked="{Binding IsActive}" Margin="0 5 5 5"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Orientation="Vertical" Grid.Row="1" Margin="0,44,0,0" Grid.RowSpan="2">
+            <TextBox TextWrapping="Wrap" Text="{Binding SelectedHobbie.Description, Mode=TwoWay}" Height="309"/>
+        </StackPanel>
+        <StackPanel Grid.Column="3" Orientation="Horizontal">
+            <Label Content="Is an Active hobby" Height="32" Width="108"/>
+            <CheckBox IsChecked="{Binding SelectedHobbie.IsActive, Mode=TwoWay}" Height="16" RenderTransformOrigin="0.471,0.508" Width="22"/>
+        </StackPanel>
+        <StackPanel Grid.Column="3" Orientation="Horizontal" Margin="0,44,0,0" Grid.RowSpan="2">
+            <Label Content="Hobby Name                    " VerticalContentAlignment="Bottom" Height="26" Width="88"/>
+            <TextBox TextWrapping="Wrap" Text="{Binding SelectedHobbie.Name, Mode=TwoWay}" Height="22" Width="154"/>
+        </StackPanel>
+
+    </Grid>
+
+</Window>

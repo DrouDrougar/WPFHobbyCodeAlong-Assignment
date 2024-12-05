@@ -1,0 +1,13 @@
+﻿<Application x:Class="WPFHobbyCodeAlong.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WPFHobbyCodeAlong"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="MenuBackgroundColor" Color="#FF5141C5"></SolidColorBrush>
+        <RadialGradientBrush x:Key="BackgroundColor" >
+            <GradientStop Color="Black"/>
+            <GradientStop Color="#FF2F7CE2" Offset="1"/>
+        </RadialGradientBrush>
+    </Application.Resources>
+</Application>
